@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xgaga bot pairing codes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/oznlsw.jpg">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: url(https://files.catbox.moe/0zqr00.jpg) no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    * {
+      touch-action: manipulation;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .box {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      padding: 20px;
+      background: transparent;
+      border: 1px solid rgba(68, 150, 255, 5);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    #text {
+      color: #f6f5f5;
+    }
+
+    .input-container input {
+      color: #f1eaea;
+    }
+
+    .centered-text {
+      color: #e9e4e4;
+    }
+
+    .input-container {
+      display: flex;
+      background: transparent;
+      border-radius: 1rem;
+      background: transparent;
+      box-shadow: transparent;
+      padding: 0.3rem;
+      gap: 0.3rem;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    .input-container input {
+      border-radius: 0.8rem 0 0 0.8rem;
+      background: #ffff;
+      box-shadow: inset 13px 13px 10px #dcdcdc, inset -13px -13px 10px #f4f4f4;
+      width: 100%;
+      flex-basis: 75%;
+      padding: 1rem;
+      border: none;
+      border-left: 2px solid #ecf2f8;
+      color: #000000;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .input-container input:focus {
+      border-left: 2px solid #ecf1f6;
+      outline: none;
+      box-shadow: inset 13px 13px 10px #f0f2f3, inset -13px -13px 10px #f4f4f4;
+    }
+
+    .input-container button {
+      flex-basis: 15%;
+      padding: 1rem;
+      background: #5935ac;
+      font-weight: 700;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+      color: white;
+      border: none;
+      width: 90%;
+      border-radius: 0 1rem 1rem 0;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .input-container button:hover {
+      background: linear-gradient(135deg, #c01736 0%, #8b17b6 100%);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      bottom: 0;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main">
+      <div class="box" id="box">
+        <div id="text">
+          <i class="fa fa-user"></i>
+          <p>
+            <h3 class="centered-text">GAGA MD PAIRING CODES</h3>
+            <br>
+            <h6>Enter your number starting with your country code.</h6>
+            <div class="input-container">
+              <input type="number" id="number" placeholder="2541122***">
+              <button id="submit">REQUEST</button>
+            </div>
+            
+            <a id="waiting-message" class="centered-text" style="display: none;">Please wait a while</a>
+            <br>
+            <br>
+            <main id="pair"></main>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p style="color: white; font-size: 16px;">𝗝𝗼𝗶𝗻 𝗨𝘀</p>
+    <a href="https://api.whatsapp.com/send/?phone=254112291443&text=Hello+Gaga👋,+I+Need+a+..."><i class="fab fa-whatsapp" style="color: #25D366"></i></a>
+    <a href="https://www.telegram.org/@richardgaga"><i class="fab fa-youtube" style="color: #FF0000"></i></a>
+    <a href="https://www.instagram.com/richgagamidush"><i class="fab fa-facebook" style="color: #4267B2"></i></a>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script>
+    let a = document.getElementById("pair");
+    let b = document.getElementById("submit");
+    let c = document.getElementById("number");
+    let box = document.getElementById("box");
+
+    async function Copy() {
+      let text = document.getElementById("copy").innerText;
+      let obj = document.getElementById("copy");
+      await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
+      obj.innerText = "COPIED";
+      obj.style = "color:blue;font-weight:bold";
+      obj.size = "5";
+      setTimeout(() => {
+        obj.innerText = text;
+        obj.style = "color:white;font-weight-bold";
+        obj.size = "5";
+      }, 500);
+    }
+
+    b.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!c.value) {
+        a.innerHTML = '<a style="color:white;font-weight:bold">Please enter your phone number starting with your country code</a><br><br>';
+      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
+        a.innerHTML = '<a style="color:red;font-weight:bold">Invalid number</a><br><br>';
+      } else {
+        const phoneNumber = c.value.replace(/[^0-9]/g, "");
+        let formattedNumber = "";
+        let tempNumber = "";
+        const numberArray = phoneNumber.split('');
+        numberArray.map(num => {
+          tempNumber += num;
+          if (tempNumber.length == 3 || tempNumber.length == 8) {
+            formattedNumber += " " + num;
+          } else {
+            formattedNumber += num;
+          }
+        });
+        c.type = "text";
+        c.value = "+" + formattedNumber;
+        c.style = "color:black;font-size:20px";
+        a.innerHTML = '<a style="color:white;font-weight:bold">Xgaga bot is genarating codes for you</a><br><br>';
+        let { data } = await axios(`/code?number=${phoneNumber}`);
+        let code = data.code || "Service Unavailable";
+        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
+      }
+    });
+  </script>
+</body>
+</html>
