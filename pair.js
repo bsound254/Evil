@@ -95,6 +95,6 @@ t.me/andyibraah]
          }
         }
     }
-    return await WILLIS_MD_PAIR_CODE()
+    return await Evil_MD_PAIR_CODE()
 });
 module.exports = router
