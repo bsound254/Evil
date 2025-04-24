@@ -6,7 +6,7 @@ const fs = require('fs');
 let router = express.Router()
 const pino = require("pino");
 const {
-    default: Winsper_Tech,
+    default: Evil_Tech,
     useMultiFileAuthState,
     delay,
     makeCacheableSignalKeyStore,
@@ -20,13 +20,13 @@ function removeFile(FilePath){
 router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
-        async function WILLIS_MD_PAIR_CODE() {
+        async function EVIL_MD_PAIR_CODE() {
         const {
             state,
             saveCreds
         } = await useMultiFileAuthState('./temp/'+id)
      try {
-            let Pair_Code_By_Winsper_Tech = Winsper_Tech({
+            let Pair_Code_By_Evil_Tech = Winsper_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({level: "fatal"}).child({level: "fatal"})),
@@ -35,16 +35,16 @@ router.get('/', async (req, res) => {
                 logger: pino({level: "fatal"}).child({level: "fatal"}),
                 browser: ["Chrome (Linux)", "", ""]
              });
-             if(!Pair_Code_By_Winsper_Tech.authState.creds.registered) {
+             if(!Pair_Code_By_Evil_Tech.authState.creds.registered) {
                 await delay(1500);
                         num = num.replace(/[^0-9]/g,'');
-                            const code = await Pair_Code_By_Winsper_Tech.requestPairingCode(num)
+                            const code = await Pair_Code_By_Evil_Tech.requestPairingCode(num)
                  if(!res.headersSent){
                  await res.send({code});
                      }
                  }
-            Pair_Code_By_Winsper_Tech.ev.on('creds.update', saveCreds)
-            Pair_Code_By_Winsper_Tech.ev.on("connection.update", async (s) => {
+            Pair_Code_By_Evil_Tech.ev.on('creds.update', saveCreds)
+            Pair_Code_By_Evil_Tech.ev.on("connection.update", async (s) => {
                 const {
                     connection,
                     lastDisconnect
@@ -54,9 +54,9 @@ router.get('/', async (req, res) => {
                 let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                 await delay(800);
                let b64data = Buffer.from(data).toString('base64');
-               let session = await Pair_Code_By_Winsper_Tech.sendMessage(Pair_Code_By_Winsper_Tech.user.id, { text: '' + b64data });
+               let session = await Pair_Code_By_Evil_Tech.sendMessage(Pair_Code_By_Winsper_Tech.user.id, { text: '' + b64data });
 
-               let WILLIS_MD_TEXT = `
+               let EVIL_MD_TEXT = `
                
                ❏ e v i l ｍｄ ｓｅｓｓｉｏｎ ｓｕｃｃｅｓｓｆｕｌｌｙ ｃｏｎｎｅｃｔｅｄ ❏
 
@@ -76,15 +76,15 @@ https://www.instagram.com/andyibraah
 t.me/andyibraah]
 
 > ɢᴇɴᴀʀᴀᴛᴇᴅ ʙʏ ʀɪᴄʜɢᴀɢᴀᴍɪᴅᴜsʜ`
- await Pair_Code_By_Winsper_Tech.sendMessage(Pair_Code_By_Winsper_Tech.user.id,{text: WILLIS_MD_TEXT},{quoted:session})
+ await Pair_Code_By_Evil_Tech.sendMessage(Pair_Code_By_Winsper_Tech.user.id,{text: WILLIS_MD_TEXT},{quoted:session})
  
 
         await delay(100);
-        await Pair_Code_By_Winsper_Tech.ws.close();
+        await Pair_Code_By_Evil_Tech.ws.close();
         return await removeFile('./temp/'+id);
             } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    WILLIS_MD_PAIR_CODE();
+                    EVIL_MD_PAIR_CODE();
                 }
             });
         } catch (err) {
@@ -95,6 +95,6 @@ t.me/andyibraah]
          }
         }
     }
-    return await Evil_MD_PAIR_CODE()
+    return await EVIL_MD_PAIR_CODE()
 });
 module.exports = router
